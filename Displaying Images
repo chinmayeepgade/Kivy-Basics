@@ -1,0 +1,29 @@
+#To display and image in a kivy GUI, the image file must be saved within the project file in the form of a .png or .jpg file
+#File:main.py
+import kivy
+from kivy.app import App
+from kivy.uix.anchorlayout import AnchorLayout
+class Images(AnchorLayout):
+    pass
+class MyApp(App):
+    pass
+MyApp().run()
+
+#File:My.kv
+Images
+<Images>:
+    #right/left/center
+    anchor_x: "center"                #at least 1 (x or y)
+    #bottom/top/center
+    anchor_y: "center"
+    BoxLayout:
+        size_hint: 0.8,0.8
+        spacing: "20dp"
+        Image:
+            source: "img_1.png"
+        Image:
+            source: "img_2.png"
+        Image:
+            source:"img_3.png"
+        Image:
+            source:"img_4.png"

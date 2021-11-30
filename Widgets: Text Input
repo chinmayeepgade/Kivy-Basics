@@ -1,0 +1,31 @@
+#The following code produces a grid of 2 elements:
+#1)Input Box: Text can be entered
+#2)Label: The entered text will be displayed on clicking the enter key
+
+#File:Main.py
+import kivy
+from kivy.app import App
+from kivy.uix.gridlayout import GridLayout
+from kivy.properties import StringProperty
+class Text_Input(GridLayout):
+    my_text = StringProperty("0")
+    text_input_str = StringProperty("")
+    def on_text_validate(self,widget):
+        self.text_input_str = widget.text
+class MyApp(App):
+    pass
+MyApp().run()
+
+#File:My.kv
+Text_Input
+<Text_Input>:
+    rows:3
+    TextInput:
+        text:"Enter text: "
+        id:my_TextInput
+        multiline: False
+        on_text_validate:root.on_text_validate(self)
+    Label:
+        text: my_TextInput.text
+        text: root.text_input_str
+        multiline:True

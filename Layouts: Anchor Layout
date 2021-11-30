@@ -1,0 +1,33 @@
+# Kivy offers numerous layouts for precise positioning of elements:
+#3:Anchor Layout
+#Anchor Layout is used to define the position if another layout embedded within it
+#The embedded layout can be at the right-bottom/right-top/right-center/left-bottom/left-top/left-center/center-bottom/center-top/center-center
+#File:main.py
+import kivy
+from kivy.app import App
+from kivy.uix.anchorlayout import AnchorLayout
+class AL(AnchorLayout):
+    pass
+class MyApp(App):
+    pass
+MyApp().run()
+
+#File My.kv
+#Intoduce the main interface:
+#Use tab spacings for all indentations
+AL
+<AL>:
+    #right/left/center
+    anchor_x: "center"                #at least 1 (x or y)
+    #bottom/top/center
+    anchor_y: "center"
+    BoxLayout:
+        size_hint: 0.5,0.5
+        Button:
+            text: "A"
+        Button:
+            text: "B"
+        Button:
+            text:"C"
+        Button:
+            text:"D"

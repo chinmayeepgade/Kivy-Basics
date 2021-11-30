@@ -1,0 +1,44 @@
+#The following code produces a grid of 3 elements:
+#1)Switch: Can be Set to ON or OFF position
+#2)Slider : Can only be moved up/down when the switch is ON
+#3)Box Layout: (a) Label: Displays the value of the slider
+               (b) Progrss Bar: Progesses according to the Slider Value
+
+#File:main.py
+import kivy
+from kivy.app import App
+from kivy.uix.gridlayout import GridLayout
+class Switch_Slider(GridLayout):
+    def switch_active(self,widget):
+        pass
+    def on_slider_value(self,widget):
+        pass
+class MyApp(App):
+    pass
+MyApp().run()
+
+#File:My.kv
+Switch_Slider
+<Switch_Slider>:
+    rows:3
+    Switch:
+        id: my_switch
+        on_active: root.switch_active(self)
+        active: True
+    Slider:
+        id:my_slider
+        min:0
+        max:100
+        orientation: "vertical"
+        value:50
+        on_value: root.on_slider_value(self)
+        disabled: not my_switch.active
+    BoxLayout:
+        orientation:"vertical"
+        Label:
+            #text: root.slider_value_text
+            text: str(int(my_slider.value) )
+            font_size: 50
+        ProgressBar:
+            max:100       #minimum is always 0, cannot be changed
+            value: my_slider.value
